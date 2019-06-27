@@ -13,21 +13,24 @@ public class MumbleBot {
 	public static void main(String[] args) throws AWTException, IOException {
 		robot = new Robot();
 
-		JFrame mainj                = new JFrame();
-		JToggleButton button_local  = new JToggleButton("Local (Page Down)");
-		JToggleButton button_upward = new JToggleButton("Upward (Page Up)");
-		JToggleButton button_fleet  = new JToggleButton("Fleet (*)");
+		JFrame mainj                  = new JFrame();
+		JToggleButton button_local    = new JToggleButton("Local (Page Down)");
+		JToggleButton button_upward   = new JToggleButton("Upward (Page Up)");
+		JToggleButton button_fleet    = new JToggleButton("Fleet (Numpad *)");
+		JToggleButton button_downward = new JToggleButton("Downward (Numpad -)");
 	
 		mainj.setSize(600, 300);
-		mainj.setLayout(new GridLayout(3,1));
+		mainj.setLayout(new GridLayout(4, 1));
 		mainj.add(button_local);
 		mainj.add(button_upward);
 		mainj.add(button_fleet);
+		mainj.add(button_downward);
 		mainj.setVisible(true);
 		mainj.setAlwaysOnTop(true);
 		button_local.setVisible(true);
 		button_upward.setVisible(true);
 		button_fleet.setVisible(true);
+		button_downward.setVisible(true);
 
 		mainj.addWindowListener(new WindowAdapter() {
 			@Override
@@ -51,6 +54,12 @@ public class MumbleBot {
 		button_fleet.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ev) {
 				toggleKey(ev, KeyEvent.VK_MULTIPLY);
+			}
+		});
+
+		button_downward.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent ev) {
+				toggleKey(ev, KeyEvent.VK_SUBTRACT);
 			}
 		});
 	}
